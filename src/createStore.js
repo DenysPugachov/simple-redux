@@ -5,12 +5,14 @@ export function createStore(rootReducer, initialState) {
   return {
     //action === {type: "INCREMENT"}
     dispatch(action) {
+      //pass state through reducer to get updated state
       state = rootReducer(state, action);
+      //run all subscribers elem(functions)
       subscribers.forEach(sub => sub())
     },
 
     subscribe(callback) {
-      //wait until something happens
+      //add callback func to arr
       subscribers.push(callback)
     },
     getState() {
