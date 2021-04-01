@@ -12,7 +12,12 @@ const asyncBtn = document.querySelector("#async")
 const themeBtn = document.querySelector("#theme")
 const body = document.querySelector("body")
 
-const store = createStore(rootReducer, 0, applyMiddleware(thunk))
+const store = createStore(rootReducer,
+  0,
+  applyMiddleware(
+    thunk,
+    logger
+  ))
 
 addBtn.addEventListener("click", () => {
   store.dispatch(increment())
@@ -35,3 +40,13 @@ store.subscribe(() => {
 })
 
 store.dispatch({ type: "INIT_APP" })
+
+function logger(store) {
+  return next => action => {
+    console.log("Prev counter state = ", store.getState());
+    console.log("Dispatch action: ", action);
+    const returnValue = next(action)
+    console.log("New counter state = ", store.getState(), "\n ");
+    return returnValue
+  }
+}
