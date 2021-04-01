@@ -2,6 +2,7 @@ import { applyMiddleware, createStore } from "redux"
 import { rootReducer } from "./redux/rootReducer"
 import { decrement, increment, async_increment } from "./redux/actions"
 import thunk from 'redux-thunk';
+import logger from "redux-logger"
 
 import "./styles.css"
 
@@ -41,12 +42,12 @@ store.subscribe(() => {
 
 store.dispatch({ type: "INIT_APP" })
 
-function logger(store) {
-  return next => action => {
-    console.log("Prev counter state = ", store.getState());
-    console.log("Dispatch action: ", action);
-    const returnValue = next(action)
-    console.log("New counter state = ", store.getState(), "\n ");
-    return returnValue
-  }
-}
+// function logger(store) {
+//   return next => action => {
+//     console.log("Prev counter state = ", store.getState());
+//     console.log("Dispatch action: ", action);
+//     const returnValue = next(action)
+//     console.log("New counter state = ", store.getState(), "\n ");
+//     return returnValue
+//   }
+// }
