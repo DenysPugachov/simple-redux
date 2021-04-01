@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore } from "redux"
+import { applyMiddleware, createStore, compose } from "redux"
 import { rootReducer } from "./redux/rootReducer"
 import { decrement, increment, async_increment, changeTheme } from "./redux/actions"
 import thunk from 'redux-thunk';
@@ -18,12 +18,12 @@ const subBtn = document.querySelector("#sub")
 const asyncBtn = document.querySelector("#async")
 const themeBtn = document.querySelector("#theme")
 
-
-const store = createStore(rootReducer,
-  applyMiddleware(
-    thunk,
-    logger
-  ))
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+const store = createStore(
+  rootReducer,
+  composeEnhancers(
+    applyMiddleware(thunk, logger))
+)
 
 addBtn.addEventListener("click", () => {
   store.dispatch(increment())
