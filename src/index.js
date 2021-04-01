@@ -45,13 +45,15 @@ themeBtn.addEventListener("click", () => {
 store.subscribe(() => {
   const state = store.getState()
   counter.textContent = state.counter
-  document.body.className = state.theme.value
+  document.body.className = state.theme.value;
+  //disable buttons on asyncBtn.click
+  [addBtn, subBtn, asyncBtn, themeBtn].forEach(btn => {
+    btn.disabled = state.theme.isDisabled
+  })
 
 })
 
 store.dispatch({ type: "INIT_APP" })
-
-
 
 // function logger(store) {
 //   return next => action => {
