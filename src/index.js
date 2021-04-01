@@ -2,7 +2,13 @@ import { applyMiddleware, createStore } from "redux"
 import { rootReducer } from "./redux/rootReducer"
 import { decrement, increment, async_increment } from "./redux/actions"
 import thunk from 'redux-thunk';
-import logger from "redux-logger"
+import logger from "redux-logger";
+
+//run logger only in dev mode
+// if (process.env.NODE_ENV === `development`) {
+//   console.log("dev");
+//   const { logger } = require(`redux-logger`);
+// }
 
 import "./styles.css"
 
@@ -41,6 +47,8 @@ store.subscribe(() => {
 })
 
 store.dispatch({ type: "INIT_APP" })
+
+
 
 // function logger(store) {
 //   return next => action => {
