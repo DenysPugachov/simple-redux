@@ -1,4 +1,4 @@
-import { ASYNC_INCREMENT, DECREMENT, INCREMENT } from "./types"
+import { DECREMENT, INCREMENT } from "./types"
 
 
 export function increment() {
@@ -10,5 +10,11 @@ export function decrement() {
 }
 
 export function async_increment() {
-  return { type: ASYNC_INCREMENT }
+  //run dispatch here instead of rootReducer
+  return function (dispatch) {
+    setTimeout(() => {
+      dispatch({ type: INCREMENT })
+    }, 1000);
+
+  }
 }
