@@ -1,6 +1,8 @@
 import { createStore } from "redux"
 import { rootReducer } from "./redux/rootReducer"
-import { decrement, increment } from "./redux/actions"
+import { decrement, increment, async_increment } from "./redux/actions"
+import thunk from 'redux-thunk';
+
 import "./styles.css"
 
 const counter = document.getElementById("counter")
@@ -20,7 +22,9 @@ subBtn.addEventListener("click", () => {
   store.dispatch(decrement())
 })
 
-asyncBtn.addEventListener("click", () => { })
+asyncBtn.addEventListener("click", () => {
+  store.dispatch(async_increment())
+})
 
 themeBtn.addEventListener("click", () => {
   body.classList = "dark"

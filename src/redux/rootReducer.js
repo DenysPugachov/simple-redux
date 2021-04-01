@@ -1,4 +1,4 @@
-import { DECREMENT, INCREMENT } from "./types";
+import { ASYNC_INCREMENT, DECREMENT, INCREMENT } from "./types";
 
 
 export function rootReducer(state, action) {
@@ -6,6 +6,10 @@ export function rootReducer(state, action) {
     return state + 1;
   } else if (action.type === DECREMENT) {
     return state - 1;
+  } else if (action.type === ASYNC_INCREMENT) {
+    setTimeout(() => {
+      return state + 1
+    }, 1000);
   }
 
   return state;
