@@ -1,4 +1,4 @@
-import { DECREMENT, INCREMENT } from "./types"
+import { CHANGE_THEME, DECREMENT, INCREMENT, } from "./types"
 
 
 export function increment() {
@@ -16,5 +16,11 @@ export function async_increment() {
       dispatch({ type: INCREMENT })
     }, 1000);
 
+  }
+}
+export function changeTheme(currentThemeClass) {
+  return {
+    type: CHANGE_THEME,
+    payload: currentThemeClass
   }
 }
